@@ -13,8 +13,7 @@
     <!-- Vue 2 -->
     <script src="{{asset('/js/vue.js')}}"></script>
     {{--    axios--}}
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    <script src="{{asset('/js/axios.min.js')}}"></script>
 
 </head>
 <body>
