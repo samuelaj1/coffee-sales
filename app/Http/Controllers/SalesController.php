@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SalesResource;
 use App\Models\Product;
 use App\Models\Sales;
 use App\Services\ProductService;
@@ -16,51 +17,13 @@ class SalesController extends Controller
         return view('sales')->with(['product' => $product]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function fetchSales(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        //
-    }
+        $type = $request->get('type');
+        $sales = ProductService::getSales($type ?? null,100)->load('product');
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Sales $sales)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Sales $sales)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Sales $sales)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Sales $sales)
-    {
-        //
+        // Return as a collection of SalesResource
+        return SalesResource::collection($sales);
     }
 }

@@ -7,5 +7,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SalesController::class, 'index'])->name('sales');
 
 Route::get('/sales', [SalesController::class, 'allSales'])->name('all-sales');
+Route::get('/fetch-sales', [SalesController::class, 'fetchSales']);
 
 
