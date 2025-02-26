@@ -48,4 +48,16 @@ class ProductService
         ];
     }
 
+    public static function fetchProducts($limit = 5)
+    {
+        return self::getLimitedProducts($limit);
+    }
+
+    private static function getLimitedProducts($limit)
+    {
+        $query = Product::take($limit);
+        $columns = ['id', 'name', 'description', 'primary_product', 'profit_margin'];
+        return $query->get($columns);
+    }
+
 }

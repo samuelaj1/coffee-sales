@@ -17,6 +17,13 @@ class SalesController extends Controller
         return view('sales')->with(['product' => $product]);
     }
 
+    public function allSales()
+    {
+        $products = ProductService::fetchProducts();
+
+        return view('allSales')->with(['products' => $products]);
+    }
+
 
     public function fetchSales(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
