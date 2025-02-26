@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Sales;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $product = Product::where('primary_product', ProductService::PRODUCT_PRIMARY)->first();
+        return view('sales')->with(['product' => $product]);
     }
 
     /**
