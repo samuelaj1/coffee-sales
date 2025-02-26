@@ -10,14 +10,14 @@ Ensure you have the following installed on your machine:
 - Docker & Docker Compose
 - Git
 
-### Cloning the Repository
+### 1. Cloning the Repository
 
 ```sh
 git clone https://github.com/samuelaj1/coffee-sales.git
 cd coffee-sales
 ```
 
-### Setting Up Environment Variables
+### 2. Setting Up Environment Variables
 
 Copy the example environment file:
 
@@ -25,34 +25,26 @@ Copy the example environment file:
 cp .env.example .env
 ```
 
-### Running the Project with Docker
+### 3. Running the Project with Docker
 
 ```sh
 docker-compose up -d --build
 ```
 This command will start the **app**, **MySQL database**, and **Nginx server**.
 
-### Updating composer and dependecies
+### 4. Updating composer and dependecies
 ```sh
 docker-compose exec app composer install
 ```
 This command will update the dependences for the project.
 
-### Running Migrations & Seeding Database
+### 5. Running Migrations & Seeding Database
 
 ```sh
 docker-compose exec app php artisan migrate --seed
 ```
 
-[//]: # (### &#40;OPTIONAL&#41; Running Laravel Development Server &#40;if not using Nginx&#41;)
-
-[//]: # ()
-[//]: # (```sh)
-
-[//]: # (docker-compose exec app php artisan serve --host=0.0.0.0 --port=8000)
-
-[//]: # (```)
-
+### 6. View the project in the browser
 The project should now be accessible at [**http://localhost:8000**](http://localhost:8000)
 
 ---
