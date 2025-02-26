@@ -131,7 +131,7 @@
             if (this.product) {
                 this.profitMargin = this.product['profit_margin'] / 100
             }
-            // this.getSales();
+            this.getSales();
             console.log('Vue is running!');
         }
     });
