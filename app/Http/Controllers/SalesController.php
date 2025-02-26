@@ -26,4 +26,28 @@ class SalesController extends Controller
         // Return as a collection of SalesResource
         return SalesResource::collection($sales);
     }
+
+    public function store(Request $request): SalesResource
+    {
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1',
+            'unit_cost' => 'required|numeric|min:0.01',
+            'product_id' => 'nullable|integer|exists:products,id'
+        ]);
+
+
+        $calculatedPrice = ProductService::calculatePrice($validated['quantity'], $validated['unit_cost'], $validated['product_id'] ?? null);
+
+        $sale = Sales::create([
+            'product_id' => $calculatedPrice['product_id'],
+            'quantity' => $validated['quantity'],
+            'unit_cost' => $validated['unit_cost'],
+            'selling_price' => $calculatedPrice['selling_price']
+        ]);
+
+        return new SalesResource($sale->load('product'));
+
+//        return response()->json(ApiResponse::successResponseV2($sale, 'successfully saved the record'));
+    }
+
 }

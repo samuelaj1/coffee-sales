@@ -15,4 +15,9 @@ class Sales extends Model
         'unit_cost',
         'selling_price',
     ];
+
+    public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
